@@ -119,8 +119,9 @@ export function Hero() {
       {/* Product stage */}
       <div ref={stageRef} className="relative mx-auto mt-20 max-w-6xl px-6 [perspective:1400px]">
         <motion.div
-          style={reduce ? undefined : { rotateX, scale, y }}
-          className="relative origin-top [transform-style:preserve-3d]"
+          // Same style on server and client to avoid hydration mismatches; reduced motion is handled in CSS.
+          style={{ rotateX, scale, y }}
+          className="relative origin-top transform-3d motion-reduce:transform-none!"
         >
           <div aria-hidden className="absolute -inset-x-10 -top-10 bottom-0 -z-10 rounded-[3rem] bg-brand/25 blur-[90px]" />
           <BrowserFrame url="app.mandakini.lk/dashboard">

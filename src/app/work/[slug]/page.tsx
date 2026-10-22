@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { ButtonLink } from "@/components/ui/button";
 import { PhoneFrame } from "@/components/ui/frames";
 import { Reveal } from "@/components/ui/reveal";
@@ -25,7 +26,29 @@ export async function generateMetadata({ params }: PageProps<"/work/[slug]">): P
   };
 }
 
-export default async function CaseStudy({ params }: PageProps<"/work/[slug]">) {
+// Params are read inside <Suspense> so client navigations get an instant shell.
+// Every slug is prerendered via generateStaticParams, so the full content still ships as static HTML.
+export default function CaseStudyPage({ params }: PageProps<"/work/[slug]">) {
+  return (
+    <Suspense fallback={<CaseStudySkeleton />}>
+      <CaseStudy params={params} />
+    </Suspense>
+  );
+}
+
+function CaseStudySkeleton() {
+  return (
+    <div className="mx-auto max-w-6xl animate-pulse px-6 pt-36 sm:pt-44" aria-busy="true">
+      <div className="h-4 w-20 rounded-full bg-surface" />
+      <div className="mt-10 h-6 w-32 rounded-full bg-surface" />
+      <div className="mt-6 h-16 w-3/4 rounded-2xl bg-surface" />
+      <div className="mt-6 h-5 w-1/2 rounded-full bg-surface" />
+      <div className="mt-16 aspect-16/10 rounded-2xl border border-line bg-surface/60" />
+    </div>
+  );
+}
+
+async function CaseStudy({ params }: { params: PageProps<"/work/[slug]">["params"] }) {
   const { slug } = await params;
   const p = getProject(slug);
   if (!p) notFound();
