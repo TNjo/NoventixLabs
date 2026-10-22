@@ -3,7 +3,6 @@
 import {
   AnimatePresence,
   motion,
-  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
@@ -18,14 +17,12 @@ const words = ["automations", "websites", "web apps", "mobile apps", "growth eng
 
 export function Hero() {
   const [index, setIndex] = useState(0);
-  const reduce = useReducedMotion();
   const stageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (reduce) return;
     const t = setInterval(() => setIndex((i) => (i + 1) % words.length), 2400);
     return () => clearInterval(t);
-  }, [reduce]);
+  }, []);
 
   const { scrollYProgress } = useScroll({ target: stageRef, offset: ["start end", "center center"] });
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });

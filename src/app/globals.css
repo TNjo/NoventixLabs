@@ -129,11 +129,14 @@
   }
 }
 
+/* Windows reports "reduce motion" whenever Animation effects is off (common on laptops),
+   so we don't freeze the whole site. Only the large, vestibular-triggering movement is
+   removed: smooth scrolling, floating cards, and the hero's 3D tilt (see hero.tsx). */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-float {
+    animation: none;
   }
 }
