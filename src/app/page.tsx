@@ -19,6 +19,14 @@ const jsonLd = {
   slogan: site.tagline,
   description: site.description,
   email: site.email,
+  telephone: site.phones[0].tel,
+  contactPoint: site.phones.map((p) => ({
+    "@type": "ContactPoint",
+    telephone: p.tel,
+    contactType: "customer support",
+    availableLanguage: ["English", "Sinhala", "Tamil"],
+    hoursAvailable: { "@type": "OpeningHoursSpecification", opens: "00:00", closes: "23:59" },
+  })),
   areaServed: "Worldwide",
   sameAs: Object.values(site.socials),
 };

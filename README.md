@@ -29,8 +29,7 @@ Each project in `projects.ts` automatically gets a card in the Work section, a s
 
 ## Before going live
 
-- Set the real phone / WhatsApp number in `src/lib/site.ts` (currently a placeholder).
-- Confirm the email address and social links in the same file.
+- Confirm the social media links in `src/lib/site.ts`.
 - Add a screenshot for Ambréa Cosmetics (`image` in `projects.ts`) once the site is reachable.
 
 The contact form needs no backend: it composes the enquiry and opens WhatsApp or the visitor's email app.

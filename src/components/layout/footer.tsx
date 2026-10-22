@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import Link from "next/link";
 import { Logo } from "@/components/brand/logo";
 import { projects } from "@/lib/projects";
@@ -45,9 +45,19 @@ export function Footer() {
             <a href={`mailto:${site.email}`} className="flex items-center gap-2 text-sm text-muted hover:text-fg">
               <Mail className="h-4 w-4 text-brand-2" /> {site.email}
             </a>
-            <a href={whatsappLink()} className="flex items-center gap-2 text-sm text-muted hover:text-fg">
-              <Phone className="h-4 w-4 text-brand-2" /> {site.phone}
+            <a href={whatsappLink()} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-muted hover:text-fg">
+              <MessageCircle className="h-4 w-4 text-brand-2" /> WhatsApp {site.whatsapp.display}
             </a>
+            <div className="flex items-start gap-2 text-sm text-muted">
+              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-2" />
+              <span className="flex flex-col gap-1">
+                {site.phones.map((p) => (
+                  <a key={p.tel} href={`tel:${p.tel}`} className="hover:text-fg">
+                    {p.display}
+                  </a>
+                ))}
+              </span>
+            </div>
             <span className="flex items-center gap-2 text-sm text-muted">
               <MapPin className="h-4 w-4 text-brand-2" /> {site.location}
             </span>

@@ -63,9 +63,27 @@ export function Contact() {
           </p>
 
           <div className="mt-10 space-y-3">
-            <ContactRow icon={MessageCircle} label="WhatsApp" value={site.phone} href={whatsappLink("Hi NoventixLabs! I'd like to discuss a project.")} />
+            <ContactRow icon={MessageCircle} label="WhatsApp" value={site.whatsapp.display} href={whatsappLink("Hi NoventixLabs! I'd like to discuss a project.")} />
             <ContactRow icon={Mail} label="Email" value={site.email} href={`mailto:${site.email}`} />
-            <ContactRow icon={Phone} label="Call us · 24/7" value={site.phone} href={`tel:${site.phone.replace(/\s/g, "")}`} />
+            <div className="flex items-center gap-4 rounded-2xl border border-line bg-surface/40 p-4">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand/15 text-brand-2">
+                <Phone className="h-5 w-5" />
+              </span>
+              <span className="min-w-0 leading-tight">
+                <span className="block text-xs text-subtle">Call us · 24/7</span>
+                <span className="mt-1.5 flex flex-wrap gap-1.5">
+                  {site.phones.map((p) => (
+                    <a
+                      key={p.tel}
+                      href={`tel:${p.tel}`}
+                      className="rounded-full border border-line-strong px-3 py-1 text-sm font-medium transition hover:border-brand hover:bg-brand hover:text-white"
+                    >
+                      {p.display}
+                    </a>
+                  ))}
+                </span>
+              </span>
+            </div>
           </div>
 
           <div className="mt-auto hidden pt-10 lg:block">
