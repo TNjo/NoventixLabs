@@ -240,38 +240,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "nk-rice-daily",
-    name: "NK Rice · Daily Prices",
-    client: "NK Rice Mill",
-    industry: "Agriculture & Market Data",
-    kind: "AI-automated price tracker",
-    categories: ["Automation & AI", "Web Apps"],
-    image: "/work/ricelanka.jpg",
-    mobileImage: "/work/ricelanka-m.jpg",
-    accent: "#84cc16",
-    summary:
-      "A bilingual rice price tracker that updates itself. Every evening an AI pipeline reads the Central Bank's market PDFs and publishes fresh prices without anyone touching it.",
-    challenge:
-      "Daily commodity prices are published as PDFs. Copying them by hand every day was slow, error-prone and easy to forget.",
-    solution:
-      "We automated the whole loop. A scheduled job downloads the latest CBSL report, Google Gemini extracts every price, and the site redeploys with retail and wholesale prices by market and day-on-day changes, in Sinhala and English.",
-    features: [
-      "Scheduled daily pipeline (6 PM Sri Lanka time)",
-      "Gemini AI extraction from government PDFs",
-      "Automatic rebuild and deployment",
-      "Prices by market: Pettah, Dambulla, Narahenpita",
-      "Day-on-day change indicators",
-      "Sinhala and English interface",
-    ],
-    delivered: ["AI automation", "Data pipeline", "Web application", "CI/CD"],
-    stack: ["React", "TypeScript", "Vite", "Google Gemini", "GitHub Actions", "Tailwind CSS"],
-    highlights: [
-      { label: "Manual work", value: "0 min" },
-      { label: "Updates", value: "Daily" },
-      { label: "Running cost", value: "Free tier" },
-    ],
-  },
-  {
     slug: "nk-rice-mill-rewards",
     name: "NK Rice Mill Rewards",
     client: "NK Rice Mill",
